@@ -4,7 +4,7 @@ A stub blog site constructed using Flask / Jinja and deployed through Heroku.
 
 #### Link
 
-Visit the page here 📝: [My Blog] (https://dawn-leaf-1474.herokuapp.com)
+Visit the page here 📝: [My Blog](https://dawn-leaf-1474.herokuapp.com)
 
 #### Reference
 
