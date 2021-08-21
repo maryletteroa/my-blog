@@ -48,16 +48,6 @@ login_manager.init_app(app)
 
 ##CONFIGURE TABLES
 
-class User(UserMixin, db.Model):
-    __tablename__ = "users"
-    __bind_key__ = "db2"
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(100), unique=True)
-    password = db.Column(db.String(100))
-    name = db.Column(db.String(1000))
-    posts = relationship("BlogPost", back_populates="author")
-    comments = relationship("Comment", back_populates="author")
-
 class BlogPost(db.Model):
     __tablename__ = "blog_posts"
     id = db.Column(db.Integer, primary_key=True)
@@ -69,6 +59,16 @@ class BlogPost(db.Model):
     body = db.Column(db.Text, nullable=False)
     img_url = db.Column(db.String(250), nullable=False)
     comments = relationship("Comment", back_populates="post")
+
+class User(UserMixin, db.Model):
+    __tablename__ = "users"
+    __bind_key__ = "db2"
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(100), unique=True)
+    password = db.Column(db.String(100))
+    name = db.Column(db.String(1000))
+    posts = relationship("BlogPost", back_populates="author")
+    comments = relationship("Comment", back_populates="author")
 
 class Comment(db.Model):
     __tablename__ = "comments"
