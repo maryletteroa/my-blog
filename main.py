@@ -81,11 +81,10 @@ class Comment(db.Model):
 #db.create_all()
 import click
 from flask.cli import with_appcontext
-@click.command(name="create_tables")
+@click.command()
 @with_appcontext
 def create_tables():
     db.create_all()
-
 app.cli.add_command(create_tables)
 
 @login_manager.user_loader
