@@ -11,6 +11,8 @@ from flask_wtf import FlaskForm
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy.orm import relationship
 from datetime import datetime
+import click
+from flask.cli import with_appcontext
 import os
 
 app = Flask(__name__)
@@ -78,14 +80,15 @@ class Comment(db.Model):
     post = relationship("BlogPost", back_populates="comments")
     text = db.Column(db.Text, nullable=False)
 
-#db.create_all()
-import click
-from flask.cli import with_appcontext
-@click.command()
+# Custom CLI command
+@click.command(name="create_tables")
 @with_appcontext
 def create_tables():
     db.create_all()
+    
 app.cli.add_command(create_tables)
+
+
 
 @login_manager.user_loader
 def load_user(user_id):
