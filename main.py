@@ -34,8 +34,8 @@ TO_EMAIL = os.environ.get("TO_EMAIL")
 ##CONNECT TO DB
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", "sqlite:///blog.db")
 app.config["SQLALCHEMY_BINDS"] = {
-        "db2": os.environ.get("HEROKU_POSTGRESQL_IVORY_URL", "sqlite:///users.db"),
-        "db3": os.environ.get("HEROKU_POSTGRESQL_WHITE_URL", "sqlite:///comments.db"),
+        "db2": "sqlite:///users.db",
+        "db3": "sqlite:///comments.db",
     }
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
