@@ -32,7 +32,7 @@ PASSWORD = os.environ.get("PASSWORD")
 TO_EMAIL = os.environ.get("TO_EMAIL")
 
 ##CONNECT TO DB
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", "sqlite:///blog.db")
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL_1", "sqlite:///blog.db")
 app.config["SQLALCHEMY_BINDS"] = {
         "db2": "sqlite:///users.db",
         "db3": "sqlite:///comments.db",
