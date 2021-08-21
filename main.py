@@ -86,6 +86,7 @@ from flask.cli import with_appcontext
 def create_tables():
     db.create_all()
 
+app.cli.add_command(create_tables)
 
 @login_manager.user_loader
 def load_user(user_id):
