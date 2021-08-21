@@ -32,10 +32,10 @@ PASSWORD = os.environ.get("PASSWORD")
 TO_EMAIL = os.environ.get("TO_EMAIL")
 
 ##CONNECT TO DB
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", "sqlite:///blog.db")
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL_1", "sqlite:///blog.db")
 app.config["SQLALCHEMY_BINDS"] = {
-        "db2": os.environ.get("HEROKU_POSTGRESQL_COBALT_URL", "sqlite:///users.db"),
-        "db3": os.environ.get("HEROKU_POSTGRESQL_MAROON_URL", "sqlite:///comments.db"),
+        "db2": os.environ.get("HEROKU_POSTGRESQL_AQUAL_URL_1", "sqlite:///users.db"),
+        "db3": os.environ.get("HEROKU_POSTGRESQL_PUCE_URL_1", "sqlite:///comments.db"),
     }
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
@@ -69,6 +69,7 @@ class BlogPost(db.Model):
     comments = relationship("Comment", back_populates="post")
 
 class Comment(db.Model):
+    __bind_key__ = "db3"
     __tablename__ = "comments"
     id = db.Column(db.Integer, primary_key=True)
     author_id = db.Column(db.Integer, db.ForeignKey("users.id"))
